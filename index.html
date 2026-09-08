@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مستر أحمد قطب | المنصة التعليمية</title>
+  <meta name="description" content="منصة مستر أحمد قطب - امسح الباركود الخاص بك لعرض الإيميل والباسورد" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <!-- مكتبة سكان الباركود -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+  <!-- خلفية متحركة -->
+  <div class="bg-blobs">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="logo">
+        <div class="logo-mark">أق</div>
+        <div class="logo-text">
+          <strong>مستر أحمد قطب</strong>
+          <small>المنصة التعليمية</small>
+        </div>
+      </div>
+      <a href="#scan" class="btn btn-sm">دخول الطلاب</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="badge">🔥 منصة مستر أحمد قطب الرسمية</div>
+      <h1>أهلاً بيك يا بطل 👋<br><span class="grad">امسح الباركود واستلم حسابك</span></h1>
+      <p class="sub">
+        كل طالب معاه باركود خاص بيه. دوس على الزرار اللي تحت، افتح الكاميرا،
+        وجّهها على الباركود — هيظهرلك <b>الإيميل والباسورد</b> فوراً.
+      </p>
+
+      <!-- الزرار في النص -->
+      <div id="scan" class="scan-box">
+        <button id="openScannerBtn" class="scan-btn">
+          <span class="scan-icon">📷</span>
+          افتح الكاميرا وامسح الباركود
+          <small>اضغط هنا للبدء</small>
+        </button>
+        <p class="hint">✔️ شغال على الموبايل واللابتوب &nbsp; • &nbsp; لازم تسمح بالكاميرا &nbsp; • &nbsp; لازم إنترنت</p>
+
+        <!-- إدخال يدوي -->
+        <div class="manual">
+          <span>أو دخل الكود يدوي:</span>
+          <div class="manual-row">
+            <input id="manualCode" type="text" inputmode="text" placeholder="مثال: 99010001" />
+            <button id="manualBtn" class="btn">عرض</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- السكانر -->
+      <div id="scannerWrap" class="scanner-wrap hidden">
+        <div class="scanner-card">
+          <div class="scanner-head">
+            <h3>وجّه الكاميرا على الباركود</h3>
+            <button id="closeScannerBtn" class="x-btn" title="إغلاق">✕</button>
+          </div>
+          <div id="reader"></div>
+          <div class="scanner-foot">
+            <p id="scanStatus" class="status">جاري تشغيل الكاميرا...</p>
+            <button id="stopBtn" class="btn btn-ghost">إيقاف الكاميرا</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- النتيجة -->
+      <div id="resultWrap" class="result-wrap hidden">
+        <div class="result-card">
+          <div class="result-top">
+            <div class="avatar">🎓</div>
+            <div>
+              <h3 id="resTitle">تم العثور على حسابك!</h3>
+              <p id="resCode" class="code-line">كود: —</p>
+            </div>
+            <span class="check">✓</span>
+          </div>
+
+          <div id="loader" class="loader hidden"><span></span> جاري جلب البيانات من السيرفر...</div>
+
+          <div id="credsBox">
+            <div id="emailRow">
+              <label>📧 الإيميل</label>
+              <div class="field">
+                <span id="resEmail" dir="ltr">—</span>
+                <button class="copy" data-copy="resEmail">نسخ</button>
+              </div>
+            </div>
+
+            <label>🔑 الباسورد</label>
+            <div class="field">
+              <span id="resPass" dir="ltr">—</span>
+              <button class="copy" data-copy="resPass">نسخ</button>
+              <button id="togglePass" class="copy ghost" type="button">إظهار</button>
+            </div>
+          </div>
+
+          <p id="resError" class="error hidden"></p>
+
+          <div class="result-actions">
+            <button id="scanAgainBtn" class="btn btn-ghost">مسح كود جديد</button>
+            <button id="copyAllBtn" class="btn">نسخ البيانات</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- خطوات -->
+    <section class="steps">
+      <div class="step"><b>1</b><h4>دوس على الزرار</h4><p>افتح الكاميرا من الموقع</p></div>
+      <div class="step"><b>2</b><h4>امسح الباركود</h4><p>ثبّت الكود جوه المربع</p></div>
+      <div class="step"><b>3</b><h4>استلم بياناتك</h4><p>اسمك والباسورد هيظهروا</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 مستر أحمد قطب — جميع الحقوق محفوظة ❤️</p>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+      "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+    }
+  }
+  </script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
